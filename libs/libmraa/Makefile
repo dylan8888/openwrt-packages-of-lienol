@@ -23,6 +23,7 @@ PKG_LICENSE_FILES:=COPYING
 PKG_BUILD_DEPENDS:=node swig/host node/host
 CMAKE_INSTALL:=1
 PKG_USE_MIPS16:=0
+PYTHON3_PKG_BUILD:=0
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
