@@ -6,66 +6,35 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=python-qrcode
-PKG_VERSION:=6.1
-PKG_RELEASE:=2
+PKG_VERSION:=7.3.1
+PKG_RELEASE:=1
 
-PKG_SOURCE:=qrcode-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://files.pythonhosted.org/packages/source/q/qrcode/
-PKG_HASH:=505253854f607f2abf4d16092c61d4e9d511a3b4392e60bff957a68592b04369
+PYPI_NAME:=qrcode
+PKG_HASH:=375a6ff240ca9bd41adc070428b5dfc1dcfbb0f2507f1ac848f6cded38956578
 
 PKG_MAINTAINER:=Eneas U de Queiroz <cotequeiroz@gmail.com>
 PKG_LICENSE:=BSD-3-Clause
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)-qrcode-$(PKG_VERSION)
-
+include ../pypi.mk
 include $(INCLUDE_DIR)/package.mk
-include ../python-package.mk
 include ../python3-package.mk
 
-PKG_UNPACK:=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
-
-define Package/python-qrcode/Default
+define Package/python3-qrcode
   SECTION:=lang
   CATEGORY:=Languages
   SUBMENU:=Python
   TITLE:=QR Code image generator
   URL:=https://github.com/lincolnloop/python-qrcode
-endef
-
-define Package/python-qrcode
-$(call Package/python-qrcode/Default)
   DEPENDS:= \
-	+PACKAGE_python-qrcode:python \
-	+PACKAGE_python-qrcode:python-setuptools \
-	+PACKAGE_python-qrcode:python-six \
-	+PACKAGE_python-qrcode:python-pillow
-  VARIANT:=python
-endef
-
-define Package/python-qrcode/description
-  Pure python QR Code generator
-endef
-
-define Package/python3-qrcode
-$(call Package/python-qrcode/Default)
-  DEPENDS:= \
-	+PACKAGE_python3-qrcode:python3 \
-	+PACKAGE_python3-qrcode:python3-setuptools \
-	+PACKAGE_python3-qrcode:python3-six \
-	+PACKAGE_python3-qrcode:python3-pillow
-  VARIANT:=python3
+	+python3 \
+	+python3-setuptools \
+	+python3-pillow
 endef
 
 define Package/python3-qrcode/description
-$(call Package/python-qrcode/description)
-.
-(Variant for Python3)
+  Pure python QR Code generator
 endef
-
-$(eval $(call PyPackage,python-qrcode))
-$(eval $(call BuildPackage,python-qrcode))
-$(eval $(call BuildPackage,python-qrcode-src))
 
 $(eval $(call Py3Package,python3-qrcode))
 $(eval $(call BuildPackage,python3-qrcode))

@@ -31,7 +31,6 @@ define Package/python3-ifaddr
   DEPENDS:= \
 	+python3-light \
 	+python3-ctypes
-  VARIANT:=python3
 endef
 
 define Package/python3-ifaddr/description
